@@ -51,6 +51,11 @@
               ],
               "outputHashing": "all"
             },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            },
             "dev": {
               "budgets": [
                 {
