@@ -1,1 +1,5 @@
 deploy: dev
+deploy: dev
+deploy: dev
+deploy: qa
+deploy: qa
