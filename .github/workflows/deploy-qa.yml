@@ -1,9 +1,9 @@
-name: Deploy to Dev
+name: Deploy to QA
 
 on:
   push:
     branches:
-    - release/dev
+    - release/qa
 
 jobs:
   check_commit:
@@ -19,11 +19,11 @@ jobs:
         run: |
           commit_message=$(git log -1 --pretty=%B)
           echo "Commit message: $commit_message"
-          if [[ $commit_message == *"deploy: dev"* ]]; then
-            echo "Commit message contains 'deploy: dev'."
+          if [[ $commit_message == *"deploy: qa"* ]]; then
+            echo "Commit message contains 'deploy: qa'."
             echo "::set-output name=should_deploy::true"
           else
-            echo "Commit message does not contain 'deploy: dev'."
+            echo "Commit message does not contain 'deploy: qa'."
             echo "::set-output name=should_deploy::false"
           fi
 
@@ -54,8 +54,8 @@ jobs:
       run: npm run test:headless
 
     - name: Build
-      run: npm run build:dev
+      run: npm run build:prod
 
     - name: Deploy
       if: success()
-      run: aws s3 sync ./dist/cv-maker-webapp/browser s3://dev-cv-maker-webapp
+      run: aws s3 sync ./dist/cv-maker-webapp/browser s3://qa-cv-maker-webapp
