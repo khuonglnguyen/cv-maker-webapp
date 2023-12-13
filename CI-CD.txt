@@ -4,3 +4,4 @@ deploy: dev
 deploy: qa
 deploy: qa
 deploy: dev
+deploy: dev
